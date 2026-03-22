@@ -26,3 +26,19 @@ class PlayerList:
             self.__head.prev = new_node
             # the list head is now the new node
             self.__head = new_node
+
+    def insert_tail(self, player):
+        """
+        Inserts a player at the end of the list.
+        :param player: The player object to add at the end of the list.
+        :return:
+        """
+        new_node = PlayerNode(player)
+
+        if self.is_empty():
+            self.__head = new_node
+            self.__tail = new_node
+        else:
+            new_node.previous_player = self.__tail
+            self.__tail.next_player = new_node
+            self.__tail = new_node

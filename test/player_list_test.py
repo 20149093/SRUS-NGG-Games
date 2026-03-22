@@ -17,5 +17,7 @@ class PlayerListTest(unittest.TestCase):
         # Now the head should be the second inserted player
         self.assertEqual(plist._PlayerList__head.player.name, "Second")
 
+
+
 if __name__ == '__main__':
     unittest.main()
