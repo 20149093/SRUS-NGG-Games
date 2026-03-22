@@ -2,9 +2,11 @@
 from player_node import PlayerNode
 
 
-class PlyerList:
+class PlayerList:
     def __init__(self):
         self.__head = None
+        self.__tail = None # Step 6 this one is pointing to the end of the list
+
 # Create a method that allows me to insert a new node at the head (it's empty or not) return a boolean
     def is_empty(self) -> bool:
         return self.__head is None
@@ -13,8 +15,9 @@ class PlyerList:
         # Create a vehicle for our player
         new_node = PlayerNode(player)
         # it is empty then
-        if self.__head.is_empty():
+        if self.is_empty():
             self.__head = new_node
+            self.__tail = new_node # Step 6 If it is unique  then it is head and tail at the same time
         # I got someone in the list
         else:
             # the new vehicle is pointing to the one who was before
