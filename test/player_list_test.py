@@ -17,6 +17,10 @@ class PlayerListTest(unittest.TestCase):
         # Now the head should be the second inserted player
         self.assertEqual(plist._PlayerList__head.player.name, "Second")
 
+    def test_insert_tail_empty_list(self):
+        plist = PlayerList()
+        plist.insert_tail(Player("99", "Last Player"))
+        self.assertEqual(plist._PlayerList__tail.player.name, "Last Player")
 
 
 if __name__ == '__main__':
