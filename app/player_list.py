@@ -72,3 +72,29 @@ class PlayerList:
             self.__tail.next_player = None
 
         return removed_node.player
+
+    def delete_by_key(self, key):
+        current_node = self.__head
+
+        while current_node:
+            if current_node.key == key:
+                if current_node == self.__head:
+                    return self.delete_head()
+
+                if current_node == self.__tail:
+                    return self.delete_tail()
+
+                # if it's in the middle, bridge the gap
+                current_node.previous_player.next_player = current_node.next_player
+                current_node.next_player.previous_player = current_node.previous_player
+
+                return current_node.player
+
+            current_node = current_node.next_player
+
+        return None
+
+
+
+
+
