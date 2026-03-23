@@ -2,6 +2,7 @@ class Player:
     def __init__(self, uid, name):
         self.__uid = uid # unique ID
         self.__name = name # The name of the player
+
     @property
     def uid(self):
         return self.__uid
