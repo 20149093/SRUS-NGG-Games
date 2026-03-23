@@ -94,6 +94,21 @@ class PlayerList:
 
         return None
 
+    # Step 8 add display to PlayerList one argument called forward - value True
+
+    def display(self, forward=True):
+        if forward:
+            current_node = self.__head
+            while current_node:
+                print(current_node)
+                current_node = current_node.next_player
+        else:
+            current_node = self.__tail
+            while current_node:
+                print(current_node)
+                current_node = current_node.previous_player
+
+
 
 
 
