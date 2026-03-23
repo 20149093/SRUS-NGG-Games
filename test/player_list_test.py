@@ -44,6 +44,23 @@ class PlayerListTest(unittest.TestCase):
         self.assertEqual(plist._PlayerList__tail.player.uid, "1")
         self.assertIsNone(plist._PlayerList__tail.next_player)
 
+    def test_delete_by_key(self):
+        plist = PlayerList()
+        p1 = Player("1", "First")
+        p2 = Player("2", "Second")
+        p3 = Player("3", "Third")
+
+        plist.insert_tail(p1)
+        plist.insert_tail(p2)
+        plist.insert_tail(p3)
+
+        removed = plist.delete_by_key("2")
+
+        self.assertEqual(removed.uid, "2")
+        self.assertEqual(plist._PlayerList__head.player.uid, "1")
+        self.assertEqual(plist._PlayerList__tail.player.uid, "3")
+        self.assertEqual(plist._PlayerList__head.next_player.player.uid, "3")
+        self.assertEqual(plist._PlayerList__tail.previous_player.player.uid, "1")
 
 if __name__ == '__main__':
     unittest.main()
