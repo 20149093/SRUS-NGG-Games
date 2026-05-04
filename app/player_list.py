@@ -1,5 +1,5 @@
 # Step 3 PlayerList with a private instance variable = None
-from player_node import PlayerNode
+from app.player_node import PlayerNode
 
 
 class PlayerList:
