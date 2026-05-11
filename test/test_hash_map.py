@@ -25,7 +25,7 @@ class PlayerHashMapTest(unittest.TestCase):
     def test_put_adds_player(self):
         player_hash_map = PlayerHashMap()
 
-        player_hash_map.put("1", "Nelson")
+        player_hash_map.put("1", "Baltimore")
 
         self.assertEqual(player_hash_map.size(), 1)
 
