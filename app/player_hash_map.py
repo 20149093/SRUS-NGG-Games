@@ -61,3 +61,20 @@ class PlayerHashMap:
 
         return player_list.find_by_key(key)
 
+    def remove(self, key):
+        """
+        Removes a player from the hash map.
+
+        :param key: The player's unique ID.
+        :return: The removed player if found, otherwise None.
+        """
+        player_list = self.__hashmap[self.get_index(key)]
+        player = player_list.find_by_key(key)
+
+        if player:
+            player_list.delete_by_key(key)
+            self.__player_count -= 1
+            return player
+
+        return None
+

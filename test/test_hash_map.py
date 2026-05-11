@@ -48,6 +48,16 @@ class PlayerHashMapTest(unittest.TestCase):
 
         self.assertIsNone(found_player)
 
+    def test_remove_deletes_player(self):
+        player_hash_map = PlayerHashMap()
+        player_hash_map.put("1", "Baltimore")
+
+        removed_player = player_hash_map.remove("1")
+
+        self.assertEqual(removed_player.name, "Baltimore")
+        self.assertIsNone(player_hash_map.get("1"))
+        self.assertEqual(player_hash_map.size(), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
