@@ -1,5 +1,6 @@
 # Step 2: Implement the Hash Map - assessment part 2
 from app.player_list import PlayerList
+from app.player import Player
 
 
 class PlayerHashMap:
@@ -25,4 +26,10 @@ class PlayerHashMap:
         Returns the number of players stored in the hash map.
         """
         return self.__player_count
+
+    def get_index(self, key):
+        """
+        Calculates the index for a player key.
+        """
+        return Player.hash(key) % self.SIZE
 

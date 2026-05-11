@@ -15,6 +15,13 @@ class PlayerHashMapTest(unittest.TestCase):
 
         self.assertEqual(player_hash_map.size(), 0)
 
+    def test_get_index_returns_valid_index(self):
+        player_hash_map = PlayerHashMap()
+
+        index = player_hash_map.get_index("ABC123")
+
+        self.assertTrue(0 <= index < 10)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -21,6 +21,22 @@ class Player:
             raise ValueError("Score must be a non-negative integer.")
         self.__score = value
 
+    # Add hash method to player - preparing to implementing get index() - assessment part 2
+
+    @classmethod
+    def hash(cls, key):
+        """
+        Creates a numeric hash from a player UID.
+        """
+        total = 0
+
+        for character in key:
+            total += ord(character)
+
+        return total
+
+
+
 
     def __str__(self):
         return f"ID: {self.__uid}, Name: {self.__name}"
@@ -28,3 +44,5 @@ class Player:
     def __repr__(self):
         return f"Player(name='{self.name}', uid='{self.__uid}', score={self.__score})"
 
+    def __hash__(self):
+        return self.hash(self.uid)
