@@ -58,6 +58,21 @@ class PlayerHashMapTest(unittest.TestCase):
         self.assertIsNone(player_hash_map.get("1"))
         self.assertEqual(player_hash_map.size(), 0)
 
+# Create collision test - I need two kays and same bucket/index
+
+    def test_collision_handling(self):
+        player_hash_map = PlayerHashMap()
+
+        player_hash_map.put("AB", "Baltimore")
+        player_hash_map.put("BA", "John")
+
+        first_player = player_hash_map.get("AB")
+        second_player = player_hash_map.get("BA")
+
+        self.assertEqual(first_player.name, "Baltimore")
+        self.assertEqual(second_player.name, "John")
+        self.assertEqual(player_hash_map.size(), 2)
+
 
 if __name__ == "__main__":
     unittest.main()
