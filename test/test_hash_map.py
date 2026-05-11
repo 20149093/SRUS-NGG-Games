@@ -80,6 +80,19 @@ class PlayerHashMapTest(unittest.TestCase):
 
         player_hash_map.display()
 
+    def test_dictionary_style_methods(self):
+        player_hash_map = PlayerHashMap()
+
+        player_hash_map["1"] = "Baltimore"
+
+        self.assertEqual(player_hash_map["1"].name, "Baltimore")
+        self.assertEqual(len(player_hash_map), 1)
+
+        del player_hash_map["1"]
+
+        self.assertIsNone(player_hash_map["1"])
+        self.assertEqual(len(player_hash_map), 0)
+
 
 
 if __name__ == "__main__":

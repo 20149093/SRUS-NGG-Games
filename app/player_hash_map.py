@@ -87,3 +87,27 @@ class PlayerHashMap:
                 print(f"Bucket {index}:")
                 player_list.display()
 
+    def __setitem__(self, key, name):
+        """
+        Adds or updates a player using dictionary-style syntax.
+        """
+        self.put(key, name)
+
+    def __getitem__(self, key):
+        """
+        Gets a player using dictionary-style syntax.
+        """
+        return self.get(key)
+
+    def __delitem__(self, key):
+        """
+        Removes a player using dictionary-style syntax.
+        """
+        self.remove(key)
+
+    def __len__(self):
+        """
+        Returns the number of players using len().
+        """
+        return self.size()
+
