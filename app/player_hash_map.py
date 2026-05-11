@@ -33,3 +33,20 @@ class PlayerHashMap:
         """
         return Player.hash(key) % self.SIZE
 
+    def put(self, key, name):
+        """
+        Adds a player to the correct PlayerList bucket.
+
+        :param key: The player's unique ID.
+        :param name: The player's name.
+        """
+        player_list = self.__hashmap[self.get_index(key)]
+        existing_player = player_list.find_by_key(key)
+
+        if existing_player:
+            existing_player.name = name
+        else:
+            player = Player(key, name)
+            player_list.insert_tail(player)
+            self.__player_count += 1
+

@@ -22,6 +22,13 @@ class PlayerHashMapTest(unittest.TestCase):
 
         self.assertTrue(0 <= index < 10)
 
+    def test_put_adds_player(self):
+        player_hash_map = PlayerHashMap()
+
+        player_hash_map.put("1", "Nelson")
+
+        self.assertEqual(player_hash_map.size(), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
