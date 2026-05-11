@@ -29,6 +29,25 @@ class PlayerHashMapTest(unittest.TestCase):
 
         self.assertEqual(player_hash_map.size(), 1)
 
+    def test_get_returns_player(self):
+        player_hash_map = PlayerHashMap()
+
+        player_hash_map.put("1", "Baltimore")
+
+        found_player = player_hash_map.get("1")
+
+        self.assertEqual(found_player.name, "Baltimore")
+
+
+        # This checks missing players
+
+    def test_get_returns_none_when_player_not_found(self):
+        player_hash_map = PlayerHashMap()
+
+        found_player = player_hash_map.get("999")
+
+        self.assertIsNone(found_player)
+
 
 if __name__ == "__main__":
     unittest.main()

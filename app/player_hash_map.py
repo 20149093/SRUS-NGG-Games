@@ -50,3 +50,14 @@ class PlayerHashMap:
             player_list.insert_tail(player)
             self.__player_count += 1
 
+    def get(self, key):
+        """
+        Retrieves a player from the hash map.
+
+        :param key: The player's unique ID.
+        :return: The player if found, otherwise None.
+        """
+        player_list = self.__hashmap[self.get_index(key)]
+
+        return player_list.find_by_key(key)
+
