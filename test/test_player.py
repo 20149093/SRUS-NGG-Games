@@ -9,3 +9,5 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(player.name, "Nelson")
 
 
+if __name__ == "__main__":
+    unittest.main()
