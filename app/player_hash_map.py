@@ -78,3 +78,12 @@ class PlayerHashMap:
 
         return None
 
+    def display(self):
+        """
+        Displays each hash map bucket that contains players.
+        """
+        for index, player_list in enumerate(self.__hashmap):
+            if not player_list.is_empty():
+                print(f"Bucket {index}:")
+                player_list.display()
+
