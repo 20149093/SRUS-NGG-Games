@@ -62,6 +62,15 @@ class PlayerListTest(unittest.TestCase):
         self.assertEqual(plist._PlayerList__head.next_player.player.uid, "3")
         self.assertEqual(plist._PlayerList__tail.previous_player.player.uid, "1")
 
+    def test_find_by_key(self):
+        plist = PlayerList()
+        plist.insert_tail(Player("1", "First"))
+        plist.insert_tail(Player("2", "Second"))
+
+        found_player = plist.find_by_key("2")
+
+        self.assertEqual(found_player.name, "Second")
+
 if __name__ == '__main__':
     unittest.main()
 

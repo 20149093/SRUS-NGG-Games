@@ -94,6 +94,23 @@ class PlayerList:
 
         return None
 
+    def find_by_key(self, key):
+        """
+        Finds and returns a player by their unique key.
+
+        :param key: The player's unique ID.
+        :return: The player if found, otherwise None.
+        """
+        current_node = self.__head
+
+        while current_node:
+            if current_node.key == key:
+                return current_node.player
+
+            current_node = current_node.next_player
+
+        return None
+
     # Step 8 add display to PlayerList one argument called forward - value True
 
     def display(self, forward=True):
