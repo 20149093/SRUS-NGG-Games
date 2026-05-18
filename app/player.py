@@ -44,5 +44,15 @@ class Player:
     def __repr__(self):
         return f"Player(name='{self.name}', uid='{self.__uid}', score={self.__score})"
 
+    def __eq__(self, other):
+        if not isinstance(other, Player):
+            return NotImplemented
+        return self.uid == other.uid and self.name == other.name and self.score == other.score
+
+    def __lt__(self, other):
+        if not isinstance(other, Player):
+            return NotImplemented
+        return self.score < other.score
+
     def __hash__(self):
         return self.hash(self.uid)
