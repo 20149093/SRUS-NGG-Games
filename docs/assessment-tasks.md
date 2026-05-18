@@ -229,7 +229,11 @@ Add a separate test case to `test_player.py` to test your custom sorting algorit
 Include your code below:
 
 ```python
-# YOUR CUSTOM Sorting here
+def test_sort_quickly_descending(self):
+    players = [Player("Alice", uid='01', score=10), Player("Bob", uid='02', score=5), Player("Charlie", uid='03', score=15)]
+    sorted_players = Player.sort_quickly(players)
+    expected_players = [Player("Charlie", uid='03', score=15), Player("Alice", uid='01', score=10), Player("Bob", uid='02', score=5)]
+    self.assertListEqual(sorted_players, expected_players)
 ```
 
 #### 5.2.3. Success criteria
@@ -259,9 +263,12 @@ Using the code above as a starting point, create a test case to test your custom
 Include your test case below:
 
 ```python
-
-# YOUR TEST CASE HERE
-
+def test_sort_quickly_1000_random_players(self):
+    import random
+    players = [Player(f"Player {i}", uid=f"{i:03}", score=random.randint(0, 1000)) for i in range(1000)]
+    expected = sorted(players, key=lambda p: p.score, reverse=True)
+    actual = Player.sort_quickly(players)
+    self.assertListEqual(actual, expected)
 ```
 
 #### 5.3.2. Success criteria
