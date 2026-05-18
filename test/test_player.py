@@ -30,6 +30,22 @@ class TestPlayer(unittest.TestCase):
 
         self.assertListEqual(sorted_players, manually_sorted_players)
 
+    def test_sort_quickly_descending(self):
+        players = [
+            Player("01", "Alice", score=10),
+            Player("02", "Bob", score=5),
+            Player("03", "Charlie", score=15),
+        ]
+
+        sorted_players = Player.sort_quickly(players)
+        manually_sorted_players = [
+            Player("03", "Charlie", score=15),
+            Player("01", "Alice", score=10),
+            Player("02", "Bob", score=5),
+        ]
+
+        self.assertListEqual(sorted_players, manually_sorted_players)
+
 
 if __name__ == "__main__":
     unittest.main()
