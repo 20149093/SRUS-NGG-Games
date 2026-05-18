@@ -1,3 +1,4 @@
+import random
 import unittest
 from app.player import Player
 
@@ -45,6 +46,18 @@ class TestPlayer(unittest.TestCase):
         ]
 
         self.assertListEqual(sorted_players, manually_sorted_players)
+
+    def test_sort_quickly_1000_random_players(self):
+        random.seed(0)
+        players = [
+            Player(f"Player {i}", f"Name {i}", score=random.randint(0, 1000))
+            for i in range(1000)
+        ]
+
+        sorted_players = Player.sort_quickly(players)
+        expected_players = sorted(players, key=lambda p: p.score, reverse=True)
+
+        self.assertListEqual(sorted_players, expected_players)
 
 
 if __name__ == "__main__":
