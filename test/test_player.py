@@ -57,7 +57,20 @@ class TestPlayer(unittest.TestCase):
         sorted_players = Player.sort_quickly(players)
         expected_players = sorted(players, key=lambda p: p.score, reverse=True)
 
-        self.assertListEqual(sorted_players, expected_players)
+        self.assertCountEqual(sorted_players, players)
+        self.assertEqual(
+            [player.score for player in sorted_players],
+            [player.score for player in expected_players],
+        )
+
+    def test_sort_quickly_1000_sorted_players(self):
+        players = [
+            Player(f"Player {i}", f"Name {i}", score=1000 - i)
+            for i in range(1000)
+        ]
+
+        sorted_players = Player.sort_quickly(players)
+        self.assertListEqual(sorted_players, players)
 
 
 if __name__ == "__main__":

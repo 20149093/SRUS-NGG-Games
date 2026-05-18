@@ -61,10 +61,11 @@ class Player:
     def sort_quickly(cls, arr):
         if len(arr) <= 1:
             return arr
-        pivot = arr[0]
+        pivot_index = len(arr) // 2
+        pivot = arr[pivot_index]
         left = []
         right = []
-        for x in arr[1:]:
+        for x in arr[:pivot_index] + arr[pivot_index + 1:]:
             if x > pivot:
                 left.append(x)
             else:
