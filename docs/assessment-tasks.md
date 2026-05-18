@@ -114,7 +114,7 @@ What is the **only** magic method that must be implemented in the player class f
 
 **Hint:** if you don't recall this from class, the error message you got when you ran the test will help you.
 -------
-> Answer Here
+> The required dunder method is `__lt__`.
 > Yes, here - instead of this text!
 -------
 #### 4.3.2. Task: Implement the magic method in the Player class
@@ -136,7 +136,11 @@ def test_players_can_be_compared_by_score(self):
 Run the test and confirm that your error resembles the previous error
 
 ```text
-INSERT ERROR OUTPUT HERE
+Traceback (most recent call last):
+  File "/Users/baltimorewhitegmail.com/PycharmProjects/SRUS-NGG-Games/test/test_player.py", line 15, in test_players_can_be_compared_by_score
+    self.assertTrue(bob < alice)
+                    ^^^^^^^^^^^
+TypeError: '<' not supported between instances of 'Player' and 'Player'
 ```
 
 - Implement the appropriate magic method in the Player class and ensure you pass this test
@@ -157,13 +161,17 @@ INSERT ERROR OUTPUT HERE
 Rerun `test_sort_players` does the test pass? If not, include the output below:
 
 ```text
-Your output here
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
 ```
 
 ##### 4.3.4.1 Question: why did the equality comparison fail?
 Why did the test fail (note: if it doesn't fail, it means there is something you have already done before you were asked to do so - if that's the case, you need to figure out what that is!)?
 -------
-> Answer here
+> The equality comparison failed because `Player` objects did not have `__eq__` implemented. Without `__eq__`, `assertListEqual` compared object identity, not player data.
 >
 -------
 Add the necessary code to the Player class to ensure that the `test_sort_players` test passes.
@@ -206,7 +214,7 @@ def sort_quickly(arr):
 
 What is the expected time and space complexity of the above algorithm? You can answer using big O or in plain English but in both cases you MUST justify your answer.
 
-> Answer here
+> Time complexity is average O(n log n) and worst-case O(n^2) with poor pivot selection. Space complexity is O(n) because the algorithm creates new left/right lists for each recursion and uses stack space.
 
 ### 5.2. Task: Implement the custom sorting algorithm
 
@@ -274,7 +282,15 @@ Create a test case that tries to sort 1000 players that are already sorted.
 If you get a failure, include the failure below:
 
 ```text
-YOUR FAILURE HERE
+Traceback (most recent call last):
+  File "/Users/baltimorewhitegmail.com/PycharmProjects/SRUS-NGG-Games/test/test_player.py", line 68, in test_sort_quickly_1000_sorted_players
+    sorted_players = Player.sort_quickly(players)
+  File "/Users/baltimorewhitegmail.com/PycharmProjects/SRUS-NGG-Games/app/player.py", line 72, in sort_quickly
+    return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+  File "/Users/baltimorewhitegmail.com/PycharmProjects/SRUS-NGG-Games/app/player.py", line 72, in sort_quickly
+    return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
+  [Previous line repeated 980 more times]
+RecursionError: maximum recursion depth exceeded
 ```
 
 ##### 5.3.4.1 Question: Why does the algorithm fail on presorted values?
@@ -283,13 +299,25 @@ Provide a reason why this test failed (if you got a recursion errors, you need t
 
 If your implementation did not fail, you must nevertheless explain why the senior developers algorithm has worse space complexity for presorted values.
 
-> Answer here
+> The algorithm fails on presorted values because using the first element as pivot produces one empty partition and one full partition every recursion. This makes the recursion unbalanced, causing O(n^2) work and exceeding recursion depth on large sorted inputs.
 
 Propose a fix to your sorting algorithm that fixes this issue.
 
 ```python
-# YOUR FIX HERE
-# Highlight what the fix was
+    @classmethod
+    def sort_quickly(cls, arr):
+        if len(arr) <= 1:
+            return arr
+        pivot_index = len(arr) // 2
+        pivot = arr[pivot_index]
+        left = []
+        right = []
+        for x in arr[:pivot_index] + arr[pivot_index + 1:]:
+            if x > pivot:
+                left.append(x)
+            else:
+                right.append(x)
+        return cls.sort_quickly(left) + [pivot] + cls.sort_quickly(right)
 ```
 
 #### 5.3.5. Success criteria
